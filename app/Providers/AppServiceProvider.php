@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\PhonedataService;
+use App\Services\PhoneDataService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,8 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(PhonedataService::class, function ($app) {
-            return new PhonedataService();
+        $this->app->bind(PhoneDataService::class, function ($app) {
+            return new PhoneDataService();
         });
     }
 

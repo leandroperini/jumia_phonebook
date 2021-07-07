@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Models\Country;
+
 class CountryRepository
 {
     private $countryCodesMap = [
@@ -15,22 +17,27 @@ class CountryRepository
     /**
      * @throws \Exception
      */
-    public function getCountryNameByCode($code) : string {
+    public function inferCountryNameByCode($code) : string {
         if ($this->countryCodesMap[$code] ?? false) {
             return $this->countryCodesMap[$code]['name'];
         }
-        throw new \Exception('Unable to find a coutry name for this code.');
+        throw new \Exception('Unable to find a country name for this code.');
     }
 
     /**
      * @throws \Exception
      */
-    public function getCountryValidationRuleByCode($code) : string {
+    public function inferCountryValidationRuleByCode($code) : string {
         if ($this->countryCodesMap[$code] ?? false) {
             return $this->countryCodesMap[$code]['validationCode'];
         }
-        throw new \Exception('Unable to find a coutry name for this code.');
+        throw new \Exception('Unable to find a country name for this code.');
     }
 
+    public function getCountryByCode($code) {
+        return Country::firstOrNew([
+            'code' => $code,
+        ]);
+    }
 
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use App\Services\PhoneDataService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/phonedata/import', function (\App\Services\PhonedataService $phonedataService) {
-    return $phonedataService->importPhoneData();
+Route::get('/phoneData/import', function (PhoneDataService $phoneDataService) {
+    if ($phoneDataService->importPhoneData()) {
+        return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
+    }
+    return new JsonResponse(["message" => "An unexpected error occurred"], JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
 });

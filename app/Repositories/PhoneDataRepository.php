@@ -4,16 +4,16 @@ namespace App\Repositories;
 
 use Illuminate\Support\Facades\DB;
 
-class PhonedataRepository
+class PhoneDataRepository
 {
-    private $phonedataTable = 'customer';
+    private $phoneDataTable = 'customer';
 
     /**
      * @param callable $callback The callback must receive an array like so, $callback(array $phoneData)
      * @param int      $iterationStepSize
      */
     public function iterateAll(callable $callback, $iterationStepSize = 100) {
-        DB::table($this->phonedataTable)->orderBy('id')->chunk($iterationStepSize, function ($data) use ($callback) {
+        DB::table($this->phoneDataTable)->orderBy('id')->chunk($iterationStepSize, function ($data) use ($callback) {
             foreach ($data as $item) {
                 $callback($item);
             }
