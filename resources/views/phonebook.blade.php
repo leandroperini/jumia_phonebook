@@ -69,6 +69,20 @@
         </table>
     </div>
 </div>
+<div class="row">
+    <div class="col">
+        <nav aria-label="Table Pagination">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <a class="page-link" href="#">Previous</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
 <div class="row justify-content-md-center">
     <div class="col">
         <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">

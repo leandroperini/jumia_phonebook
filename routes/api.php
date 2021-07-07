@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/phonedata/import', function (\App\Services\PhonedataService $phonedataService) {
+    return $phonedataService->importPhoneData();
+});
