@@ -22,6 +22,7 @@ class CreateInitialTables extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
             $table->string('number')->unique();
+            $table->boolean('is_valid');
             $table->unsignedInteger('country_id');
             $table->foreign('country_id')->references('id')->on('countries');
             $table->unsignedInteger('customer_id');

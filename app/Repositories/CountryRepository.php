@@ -7,11 +7,21 @@ use App\Models\Country;
 class CountryRepository
 {
     private $countryCodesMap = [
-        '237' => ['name'=>'Cameroon', 'validationCode'=>'[2368]\d{7,8}'],
-        '251' => ['name'=>'Ethiopia', 'validationCode'=>'[1-59]\d{8}'],
-        '212' => ['name'=>'Morocco', 'validationCode'=>'[5-9]\d{8}'],
-        '258' => ['name'=>'Mozambique', 'validationCode'=>'[28]\d{7,8}'],
-        '256' => ['name'=>'Uganda', 'validationCode'=>'\d{9}'],
+        '237' => ['name'           => 'Cameroon',
+                  'validationCode' => '[2368]\d{7,8}',
+        ],
+        '251' => ['name'           => 'Ethiopia',
+                  'validationCode' => '[1-59]\d{8}',
+        ],
+        '212' => ['name'           => 'Morocco',
+                  'validationCode' => '[5-9]\d{8}',
+        ],
+        '258' => ['name'           => 'Mozambique',
+                  'validationCode' => '[28]\d{7,8}',
+        ],
+        '256' => ['name'           => 'Uganda',
+                  'validationCode' => '\d{9}',
+        ],
     ];
 
     /**
@@ -38,6 +48,10 @@ class CountryRepository
         return Country::firstOrNew([
             'code' => $code,
         ]);
+    }
+
+    public function getAll() {
+        return Country::all();
     }
 
 }

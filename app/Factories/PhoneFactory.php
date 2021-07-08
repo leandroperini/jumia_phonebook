@@ -30,10 +30,19 @@ class PhoneFactory
     }
 
     public function newPhoneByNumber($number) : Phone {
-        $phone = $this->phoneRepository->getPhoneByNumber($number);
-        $phone = $this->addRelationsIfExists($phone);
+        $phone           = $this->phoneRepository->getPhoneByNumber($number);
+        $phone           = $this->addRelationsIfExists($phone);
+        $phone->is_valid = $this->checkValidity($number);
         $this->resetRelationships();
         return $phone;
+    }
+
+    public function checkValidity($number) {
+        $validationRule = '.*';
+        if ($this->country) {
+            $validationRule = $this->country->validation_rule;
+        }
+        return preg_match('/' . $validationRule . '/', $number) === 1;
     }
 
     public function setRelatedCountry(Country $country) {

@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Phone extends Model
 {
-    public $timestamps = false;
-    protected $fillable = [
+    public    $timestamps = false;
+    protected $fillable   = [
         'number',
+        'is_valid',
+    ];
+
+    protected $casts = [
+        'is_valid' => 'boolean',
     ];
 
     public function country() {
@@ -19,7 +24,4 @@ class Phone extends Model
         return $this->belongsTo(Customer::class);
     }
 
-    public function isValid() {
-        return preg_match($this->country()->validation_rule, $this->number) === 1;
-    }
 }
